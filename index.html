@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Will You Be My Valentine?</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+font-family:'Poppins',sans-serif;
+background:linear-gradient(135deg,#ffafbd,#ffc3a0);
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+color:#5d3b3b;
+padding:20px;
+overflow-x:hidden;
+}
+
+.container{
+max-width:900px;
+width:100%;
+background:rgba(255,255,255,0.92);
+border-radius:20px;
+box-shadow:0 15px 35px rgba(0,0,0,0.15);
+overflow:hidden;
+position:relative;
+}
+
+.heart-bg{
+position:absolute;
+font-size:20px;
+color:rgba(255,105,180,0.1);
+z-index:0;
+}
+
+header{
+text-align:center;
+padding:40px 30px;
+background:linear-gradient(to right,#ff758c,#ff7eb3);
+position:relative;
+color:white;
+}
+
+h1{
+font-family:'Dancing Script',cursive;
+font-size:3.2rem;
+}
+
+.subtitle{
+font-size:1.2rem;
+opacity:0.95;
+}
+
+.main-content{
+display:flex;
+flex-wrap:wrap;
+padding:40px;
+position:relative;
+z-index:2;
+}
+
+.photo-section{
+flex:1;
+min-width:300px;
+display:flex;
+flex-direction:column;
+align-items:center;
+}
+
+.photo-frame{
+width:100%;
+max-width:350px;
+height:350px;
+border-radius:15px;
+overflow:hidden;
+border:8px solid white;
+box-shadow:0 10px 20px rgba(0,0,0,0.1);
+}
+
+.photo-frame img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.heart-counter{
+margin-top:15px;
+font-size:1.1rem;
+color:#ff758c;
+font-weight:600;
+}
+
+.message-section{
+flex:1.2;
+min-width:300px;
+padding-left:30px;
+}
+
+.message-box{
+background:#fff9fb;
+padding:30px;
+border-radius:15px;
+border-left:5px solid #ff7eb3;
+margin-bottom:30px;
+}
+
+.message-title{
+font-family:'Dancing Script',cursive;
+font-size:2rem;
+color:#ff758c;
+margin-bottom:15px;
+}
+
+.message-text p{
+margin-top:15px;
+line-height:1.6;
+}
+
+.question{
+font-family:'Dancing Script',cursive;
+font-size:2.3rem;
+color:#ff758c;
+margin-bottom:25px;
+text-align:center;
+}
+
+.buttons{
+display:flex;
+justify-content:center;
+gap:25px;
+flex-wrap:wrap;
+}
+
+.btn{
+padding:15px 40px;
+border:none;
+border-radius:50px;
+font-size:1.2rem;
+cursor:pointer;
+transition:0.3s;
+}
+
+.yes-btn{
+background:linear-gradient(to right,#ff758c,#ff7eb3);
+color:white;
+}
+
+.no-btn{
+background:#eee;
+}
+
+.response-message{
+margin-top:25px;
+padding:20px;
+border-radius:15px;
+background:#f9f3f3;
+display:none;
+text-align:center;
+}
+
+footer{
+text-align:center;
+padding:20px;
+background:#fff9fb;
+font-size:0.9rem;
+}
+</style>
+</head>
+
+<body>
+<audio id="bgMusic" autoplay loop>
+    <source src="james-arthur-say-you-won-t-let-go-128-ytshorts.savetube.me.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+
+<!-- Floating background hearts -->
+<div class="heart-bg" style="top:10%;left:5%;">❤</div>
+<div class="heart-bg" style="top:20%;right:10%;">❤</div>
+<div class="heart-bg" style="bottom:30%;left:8%;">❤</div>
+<div class="heart-bg" style="bottom:20%;right:15%;">❤</div>
+
+<header>
+<h1 id="dynamicHeader"></h1>
+<p class="subtitle">A special question for someone who means everything to me</p>
+</header>
+
+<div class="main-content">
+
+<div class="photo-section">
+<div class="photo-frame">
+<img src="Lerato(2).jpg" alt="Our Picture">
+</div>
+<div class="heart-counter">
+<i class="fas fa-heart"></i>
+<span id="heartCount">0</span> Hearts for You
+</div>
+</div>
+
+<div class="message-section">
+
+<div class="message-box">
+<h2 class="message-title">My Hapiness,</h2>
+<div class="message-text">
+<p>From the moment you entered my life, everything became brighter and softer. You are my peace, my laughter, and my favourite person all in one.</p>
+<p>You make ordinary days feel extraordinary just by being there. Your smile is my safe place, and your presence feels like home.</p>
+<p>I don’t just want to celebrate one day with you, I want to build memories, grow together, and choose each other every single day.</p>
+</div>
+</div>
+
+<h2 class="question">Will you be my Valentine?</h2>
+
+<div class="buttons">
+<button class="btn yes-btn" id="yesBtn">💖 YES, ABSOLUTELY!</button>
+<button class="btn no-btn" id="noBtn">No</button>
+</div>
+
+<div class="response-message" id="responseMessage">
+<h3 id="responseTitle"></h3>
+<p id="responseText"></p>
+<div id="heartsAnimation"></div>
+</div>
+
+</div>
+</div>
+
+<footer>
+Made with ❤️ for the most amazing person in my life
+</footer>
+
+</div>
+
+<script>
+
+// 👑 CHANGE HER NAME HERE
+const herName = "Lerato";
+
+document.getElementById("dynamicHeader").textContent =
+"To My Beautiful " + herName;
+
+// Heart counter to 143
+let heartCount = 0;
+const heartCountElement = document.getElementById('heartCount');
+const heartInterval = setInterval(()=>{
+if(heartCount < 143){
+heartCount++;
+heartCountElement.textContent = heartCount;
+}else{
+clearInterval(heartInterval);
+}
+},30);
+
+// YES button
+document.getElementById("yesBtn").addEventListener("click",function(){
+const responseMessage = document.getElementById("responseMessage");
+const responseTitle = document.getElementById("responseTitle");
+const responseText = document.getElementById("responseText");
+const heartsAnimation = document.getElementById("heartsAnimation");
+
+responseTitle.textContent="You just made me the happiest person alive!";
+responseText.textContent=herName+", I promise to love you intentionally, cherish every moment, and always remind you how special you are.";
+heartsAnimation.innerHTML="❤❤❤❤❤";
+
+responseMessage.style.display="block";
+createHearts();
+});
+
+// NO button hover move
+const noBtn = document.getElementById("noBtn");
+noBtn.addEventListener("mouseover",function(){
+const x=Math.random()*(window.innerWidth-noBtn.offsetWidth);
+const y=Math.random()*(window.innerHeight-noBtn.offsetHeight);
+noBtn.style.position="fixed";
+noBtn.style.left=x+"px";
+noBtn.style.top=y+"px";
+});
+
+// Floating hearts animation
+function createHearts(){
+const container=document.querySelector(".container");
+for(let i=0;i<15;i++){
+const heart=document.createElement("div");
+heart.innerHTML="❤";
+heart.style.position="absolute";
+heart.style.color="#ff758c";
+heart.style.fontSize=(Math.random()*25+20)+"px";
+heart.style.left=Math.random()*100+"%";
+heart.style.top="100%";
+heart.style.opacity="0.8";
+heart.style.pointerEvents="none";
+container.appendChild(heart);
+
+let pos=100;
+const animation=setInterval(()=>{
+pos-=1;
+heart.style.top=pos+"%";
+heart.style.opacity-=0.01;
+if(pos<0){
+clearInterval(animation);
+heart.remove();
+}
+},20);
+}
+}
+//song
+document.addEventListener("click", function () {
+    const music = document.getElementById("bgMusic");
+    music.play();
+}, { once: true });
+
+</script>
+
+</body>
+</html>
